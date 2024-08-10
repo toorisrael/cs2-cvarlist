@@ -437,7 +437,7 @@ cl_clock_unhook |  | Default: false<br>
 cl_clockdbg |  | Default: false<br>
 cl_clockdrift_max_ticks | cheat | Default: 3<br>Maximum number of ticks the clock is allowed to drift before the client snaps its clock to the server's.
 cl_clutch_mode | cl, release | Default: false<br>Silence voice and other distracting sounds until the end of round or next death.
-cl_color | cl, a, user | Default: 4<br>Preferred teammate color
+cl_color | cl, a, user | Default: 2<br>Preferred teammate color
 cl_commandtool_exec | cl | Runs a command from the command tool
 cl_connectionretrytime_p2p | release | Default: 20<br>Number of seconds over which to spread retry attempts for P2P.
 cl_cq_min_queue | user | Default: 0<br>Used by the client to inform the server of their desired queue length.  Derived from cl_tickpacket_recvmargin_desired and cl_tickpacket_desired_queuelength
@@ -1134,6 +1134,7 @@ contributionscore_hostage_rescue_minor | sv, release | Default: 1<br>amount of c
 contributionscore_kill | sv, release | Default: 2<br>amount of contribution score added for a kill
 contributionscore_kill_factor | sv, release | Default: 0<br>percentage of victim's contribution score to award to their killer as a bonus
 contributionscore_objective_kill | sv, release | Default: 3<br>amount of contribution score added for an objective related kill
+contributionscore_participation | sv, release | Default: 0<br>amount of contribution score awarded to players for active participation in the round
 contributionscore_suicide | sv, release | Default: -2<br>amount of contribution score for a suicide, normally negative
 contributionscore_team_kill | sv, release | Default: -2<br>amount of contribution score for a team kill, normally negative
 convars_echo_toggle_changes |  | Default: true<br>Echo to the console changes caused by toggling.
@@ -1167,7 +1168,7 @@ cs_AssistDamageThreshold | sv | Default: 25<br>cs_AssistDamageThreshold defines 
 cs_ShowStateTransitions | sv, cheat | Default: -2<br>cs_ShowStateTransitions &lt;ent index or -1 for all&gt;. Show player state transitions.
 cs_hostage_near_rescue_music_distance | sv, cheat | Default: 2000<br>
 cs_logtouchexpansion | sv, cheat | Default: -2<br>cs_logtouchexpansion &lt;ent index or -1 for all&gt;. Log player touch expansion component.
-cs_minimap_create_output_size | cl, cheat | Default: 1024<br>Size of minimap texture generated with cs_minimap_create (512 default)
+cs_minimap_create_output_size | cl, release | Default: 1024<br>Size of minimap texture generated with cs_minimap_create (512 default)
 cs_minimap_renderdoc_capture_enabled | cl, cheat | Default: false<br>
 cs_minimap_rendering_msaa_mode | cl, cheat | Default: 2<br>MSAA mode used for minimap rendering 0-none, 1-2xMSAA, 2-4xMSAA, 3-6X, 4-8X, etc
 cs_quit_prompt | cl, release | Quit the game
@@ -1263,6 +1264,7 @@ demo_marktick | release | Marks the current demo playback tick for later use
 demo_mouse_enable_binding | cl, a | Default: drop<br>Name of the binding to enable mouse on demo playback UI
 demo_movie_write_intervals | cl, release | Default: false<br>Write highlight interval metadata along with movie files when recording.
 demo_pause | release | Pauses demo playback.
+demo_pause_at_end | cl, release | Default: true<br>Pause demo playback when the end of the file is reached, otherwise quit to main menu.
 demo_pauseatservertick |  | Default: 0<br>Pauses demo playback at server tick
 demo_playback_override_settings | cl | Default: false<br>
 demo_quitafterplayback | release | Default: false<br>Quits game after demo playback.
@@ -1558,7 +1560,7 @@ fov_desired | cl, a, user | Default: 75<br>Sets the base field-of-view.
 fp_trace |  | Toggle field path tracing to file<br>
 fps_max | a, release | Default: 400<br>Frame rate limiter.  0=no limit.  Does not apply to dedicated server.
 fps_max_tools | a | Default: 120<br>Additional frame rate limit while in tools mode and a window other than the game window has focus. Note that fps_max still applies, this only allows the maximum frame rate for tools mode to be lower. 0=no tools specific limit.
-fps_max_ui | a | Default: 120<br>Frame rate limiter while the game UI is displayed.  0=no limit.  Does not apply to dedicated server.
+fps_max_ui | a | Default: 200<br>Frame rate limiter while the game UI is displayed.  0=no limit.  Does not apply to dedicated server.
 frag_grenade_blip_frequency | sv, cl, rep | Default: 1<br>
 freecamera_accel | cl | Default: 5<br>Tweak this parameter to adjust Free Camera movement acceleration.
 freecamera_fog_end | cl | Default: 2500<br>Fog end for Free Camera.
@@ -3403,7 +3405,7 @@ r_size_cull_threshold_fade |  | Default: 7.5<br>% above the screen size percenta
 r_size_cull_threshold_shadow | cheat | Default: 0.2<br>Threshold of shadow map size percentage below which objects get culled
 r_skinning_enabled | cheat | Default: true<br>
 r_skip_precache_validation_check |  | Default: true<br>
-r_smooth_morph_normals | release | Default: true<br>
+r_smooth_morph_normals | release | Default: false<br>
 r_ssao |  | Default: true<br>Set to use screen-space ambient occlusion
 r_ssao_bias |  | Default: 2.5<br>
 r_ssao_blur |  | Default: true<br>
@@ -4529,6 +4531,7 @@ sv_stats |  | Default: true<br>Collect CPU usage stats
 sv_steamauth_enforce | release | Default: 2<br>By default, player must maintain a reliable connection to Steam servers. When player Steam session drops, enforce it: 2 = instantly kick, 1 = kick at next spawn, 0 = do not kick.
 sv_steamgroup | nf, release | Default: <br>The ID of the steam group that this server belongs to. You can find your group's ID on the admin profile page in the steam community.
 sv_steamgroup_exclusive | release | Default: false<br>If set, only members of Steam group will be able to join the server when it's empty, public people will be able to join the server only if it has players.
+sv_step_move_vel_min | sv, cl, rep, cheat | Default: 64<br>Min velocity for step move.
 sv_stepsize | sv, cl, nf, rep | Default: 18<br>
 sv_stopspeed | sv, cl, nf, rep, release | Default: 80<br>Minimum stopping speed when on ground.
 sv_strafing_inaccuracy_bias | sv, cl, rep, cheat, release | Default: 0.5<br>
@@ -4602,6 +4605,7 @@ sv_vote_kick_ban_duration | sv, nf, rep, release | Default: 15<br>How long shoul
 sv_vote_quorum_ratio | sv, release | Default: 0.501<br>The minimum ratio of players needed to vote on an issue to resolve it.
 sv_vote_timer_duration | sv, release | Default: 15<br>How long to allow voting on an issue
 sv_vote_to_changelevel_before_match_point | sv, rep, release | Default: false<br>Restricts vote to change level to rounds prior to match point (default 0, vote is never disallowed)
+sv_vote_to_changelevel_rndmin | sv, rep, release | Default: 0<br>When non-zero, restricts vote to change level to this many first rounds or minutes of the match (default 0, vote is not disallowed)
 sv_walkable_normal | sv, cl, rep, cheat, release | Default: 0.7<br>
 sv_warmup_to_freezetime_delay | sv, cl, rep, release | Default: 4<br>Delay between end of warmup and start of match.
 sv_watchtransmit | sv, release | Default: -2<br>Watch NetworkStateChanged info for this entity index.
