@@ -388,6 +388,7 @@ cl_ShowBoneSetupEnts | cl | Default: false<br>Show which entities are having the
 cl_access_all_missions | cl | Default: false<br>
 cl_aggregate_particles |  | Default: false<br>
 cl_allow_animated_avatars | cl, a, release | Default: true<br>Whether or not to allow animated avatars
+cl_allow_multi_input_binds | cl, cheat, release | Default: false<br>
 cl_anglespeedkey | cl | Default: 0.67<br>
 cl_anim_eval_stats | cl | Displays stats about how many EvaluatePose calls are unused
 cl_animgraph_dump_update_list | cl | Displays stats about which animations are updating
@@ -787,6 +788,7 @@ cl_player_visibility_stencil_proxy_min_dist | cl | Default: 3<br>
 cl_player_visibility_stencil_proxy_min_dist_box | cl | Default: 1<br>
 cl_player_visibility_stencil_proxy_type | cl | Default: 1<br>0 - box, 1 - dodecahedron
 cl_playerspraydisable | cl, a | Default: false<br>Disable player sprays.
+cl_poll_network_early |  | Default: false<br>Enable polling for network messages every frame, instead of every tick
 cl_precacheinfo |  | Show precache info (client).
 cl_pred_build_verbose | cl | Default: false<br>Verbose spew when building prediction optimized data runs.
 cl_pred_checkstuck | cl | Default: false<br>Perform the additional 'stuck' traces on the client side during prediction.
@@ -1010,6 +1012,7 @@ cl_track_aim_head_log_closest | cl, release | Default: false<br>Log when closest
 cl_track_aim_head_threshold | cl, release | Default: 0<br>Notify render device when rendering a frame with enemy head within threshold distance
 cl_track_render_eye_angles | cl, release | Default: false<br>Spew render eye angles
 cl_tree_sway_dir | cl | sets tree sway wind direction and strength
+cl_true_sight_spectate | cl | Default: true<br>
 cl_ui_particles_destroy_when_not_painting | cl | Default: true<br>
 cl_updatevisibility | cl | Updates visibility bits.
 cl_use_entity_as_targetid | cl | Default: true<br>
@@ -1374,6 +1377,7 @@ engine_frametime_print_report |  | Print a performance report from the current d
 engine_frametime_warnings_enable |  | Default: true<br>Enable framerate-related warnings, such as sv_long_frame_ms.  Disabling warnings is useful when running in situations such a debug where a slow frame rate is expected
 engine_low_latency_sleep_after_client_tick | release | Default: false<br>When r_low_latency is enabled, this moves the low latency sleep on tick frames to happen after client simulation.
 engine_max_resource_system_update_time |  | Default: 5<br>
+engine_max_ticks_to_simulate |  | Default: -1<br>Max number of ticks to simulate per frame, after which simulation will start to slow down compared to real time.
 engine_no_focus_sleep | a | Default: 20<br>
 engine_no_focus_sleep_vconsole_suppress |  | Default: true<br>When VConsole is in the foreground, don't trigger engine_no_focus_sleep behavior
 engine_ostype |  | Default: <br>OS type the engine is running on.
@@ -1386,7 +1390,6 @@ engine_show_frame_dispatch |  | Default: false<br>show frame dispatch names.
 engine_show_frame_pacing | release | Default: false<br>
 engine_show_frame_ticks |  | Default: false<br>
 engine_sse42 |  | Default: true<br>turn on sse4.2 optimizations in the engine
-engine_vr_max_ticks_to_simulate |  | Default: 3<br>Max number of ticks to simulate per frame, after which simulation will start to slow down compared to real time.
 english | cl, user | Default: true<br>If set to 1, running the english language set of assets.
 ent_absbox | sv, cheat | Displays the total bounding box for the given entity(s) in green.  Some entites will also display entity specific overlays.<br>	Arguments:   	{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 ent_actornames | sv, cheat | Displays the entity name for all entities that have ShouldDisplayInActorNames true in code
@@ -1852,8 +1855,6 @@ joy_sidesensitivity | cl, a | Default: 1<br>
 joy_vehicle_turn_lowend | cl | Default: 0.7<br>
 joy_vehicle_turn_lowmap | cl | Default: 0.4<br>
 joy_virtual_peg | cl | Default: 0<br>
-joy_wingmanwarrior_centerhack | a | Default: false<br>Wingman warrior centering hack.
-joy_wingmanwarrior_turnhack | a | Default: false<br>Wingman warrior hack related to turn axes.
 joy_xcontroller_cfg_loaded | cl | Default: false<br>If 0, the 360controller.cfg file will be executed on startup & option changes.
 joy_yaw_sensitivity | cl, a, per_user | Default: 3<br>
 joy_yawsensitivity | cl, a, per_user | Default: -1<br>
@@ -2318,7 +2319,7 @@ mp_t_default_grenades | sv, cl, rep, release | Default: <br>The default grenades
 mp_t_default_melee | sv, cl, rep, release | Default: weapon_knife<br>The default melee weapon that the Ts will spawn with
 mp_t_default_primary | sv, cl, rep, release | Default: <br>The default primary (rifle) weapon that the Ts will spawn with
 mp_t_default_secondary | sv, cl, rep, release | Default: weapon_glock<br>The default secondary (pistol) weapon that the Ts will spawn with
-mp_tagging_scale | sv, rep, release | Default: 1<br>Scalar for player tagging modifier when hit. Lower values for greater tagging.
+mp_tagging_scale | sv, cl, rep, release | Default: 1<br>Scalar for player tagging modifier when hit. Lower values for greater tagging.
 mp_taser_recharge_time | sv, cl, rep, release | Default: 30<br>Determines recharge time for taser. -1 = disabled.
 mp_td_dmgtokick | sv, rep, release | Default: 300<br>The damage threshhold players have to exceed in a match to get kicked.
 mp_td_dmgtowarn | sv, rep, release | Default: 200<br>The damage threshhold players have to exceed in a match to get warned that they are about to be kicked.
@@ -4282,7 +4283,6 @@ sv_extra_client_connect_time |  | Default: 15<br>Seconds after client connect du
 sv_extract_ammo_from_dropped_weapons | sv, cl, rep, release | Default: false<br>
 sv_extreme_strafe_accuracy_fishtail | sv, cl, rep | Default: 0<br>Number of degrees of aim 'fishtail' when making an extreme strafe direction change
 sv_fade_player_visibility_farz | sv, cl, rep, release | Default: false<br>
-sv_fake_dropped_ucmd_interval | sv | Default: 0<br>
 sv_falldamage_scale | sv, cl, rep, release | Default: 1<br>
 sv_falldamage_to_below_player_multiplier | sv, cl, rep, release | Default: 1<br>Scale damage when distributed across two players
 sv_falldamage_to_below_player_ratio | sv, cl, rep, release | Default: 0<br>Landing on a another player's head gives them this ratio of the damage.
@@ -4427,6 +4427,7 @@ sv_phys_stop_at_collision | sv, cheat | Default: <br>
 sv_phys_visualize_awake | sv | Default: false<br>
 sv_player_search_range | sv, cl, rep | Default: 64<br>
 sv_playerradio_use_allowlist | sv, release | Default: true<br>playerradio commands may only use responses from an allow list of commands.
+sv_predictable_damage_tag_ticks | sv, release | Default: 2<br>Delay player slowdown when damaged by # ticks to reduce misprediction effects
 sv_prime_accounts_only | sv, release | Default: false<br>When this setting is enabled only prime users can connect to this game server.
 sv_pure | release | Show user data.
 sv_pure_kick_clients | release | Default: true<br>If set to 1, the server will kick clients with mismatching files. Otherwise, it will issue a warning to the client.
